@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Página principal{% endblock %}
+
+{% block content %}
+
+<div class="offset-1 col-10 list-div">
+    <h1>Lista</h1>
+    <a href="http://127.0.0.1:8000/cadastro" class="add"><div class="col-2 add-div">
+       <i class="fas fa-plus"></i> Adicionar Cliente
+    </div></a> 
+    <div class="col-9 search-div">
+        <input class="form-control" type="text" id="search" name="search" placeholder="Digite sua busca">
+        <i class="fas fa-search"></i>
+    </div>
+    <ul class="task-list">
+        <li class="task-item">
+            <span>Título</span>
+            <span><i class="fas fa-trash"></i></span>
+            <span><i class="fas fa-edit"></i></span>
+        </li>
+        <li class="task-item">
+            <span>Título</span>
+            <span><i class="fas fa-trash"></i></span>
+            <span><i class="fas fa-edit"></i></span>
+        </li>
+        <li class="task-item">
+            <span>Título</span>
+            <span><i class="fas fa-trash"></i></span>
+            <span><i class="fas fa-edit"></i></span>
+        </li>
+        <li class="task-item">
+            <span>Título</span>
+            <span><i class="fas fa-trash"></i></span>
+            <span><i class="fas fa-edit"></i></span>
+        </li>
+    </ul>
+</div>
+{% endblock %}
