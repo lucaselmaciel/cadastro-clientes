@@ -1,10 +1,10 @@
 from django.db import models
 
 # Create your models here.
-SIGLAS = ((1, 'AC'),(2, 'AL'),(3, 'AP'),(4, 'AM'),(5, 'BA'),(6, 'CE'),(7, 'DF'),
-(8, 'ES'),(9, 'GO'),(10, 'MA'),(11, 'MT'),(12, 'MS'),(13, 'MG'),(14, 'PA'),(15, 'PB'),
-(16, 'PR'),(17, 'PE'),(18, 'PI'),(19, 'RJ'),(20, 'RN'),(21, 'RS'),(22, 'RO'),(23, 'RR'),
-(24, 'SC'),(25, 'SP'),(26, 'SE'),(27, 'TO'))
+SIGLAS = (('ac', 'AC'),('al', 'AL'),('ap', 'AP'),('am', 'AM'),('ba', 'BA'),('ce', 'CE'),('df', 'DF'),
+('es', 'ES'),('go', 'GO'),('ma', 'MA'),('mt', 'MT'),('ms', 'MS'),('mg', 'MG'),('pa', 'PA'),('pb', 'PB'),
+('pr', 'PR'),('pe', 'PE'),('pi', 'PI'),('rj', 'RJ'),('rn', 'RN'),('rs', 'RS'),('ro', 'RO'),('rr', 'RR'),
+('sc', 'SC'),('sp', 'SP'),('se', 'SE'),('to', 'TO'))
 
 class Base(models.Model):
     criacao = models.DateField('Criado', auto_now_add=True)
@@ -25,3 +25,6 @@ class CadastroCliente(Base):
     cidade = models.CharField('Cidade', max_length=30)
     uf = models.CharField(max_length=1, choices=SIGLAS)
     telefone = models.DecimalField('Telefone', max_digits=11, decimal_places=0)
+
+    def __str__(self):
+        return self.nome

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import CadastroModelForm
+from .models import CadastroCliente
 from django.contrib import messages
 
 
@@ -25,3 +26,10 @@ def cadastroClientes(request):
         'form': form
     }
     return render(request, 'tasks/cadastro.html', context)
+
+'''def update(request, id):
+    cliente = CadastroCliente.objects.get(id=id)
+    context = {
+        'cliente': cliente
+    }
+    return render(request, 'tasks/update.html', context)'''
