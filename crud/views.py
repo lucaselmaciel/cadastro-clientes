@@ -29,6 +29,7 @@ def cadastroClientes(request):
 
 def update(request, id):
     cliente = CadastroCliente.objects.get(id=id)
+    
     context = {
         'cliente': cliente
     }
