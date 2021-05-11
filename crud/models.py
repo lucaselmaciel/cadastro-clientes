@@ -16,15 +16,15 @@ class Base(models.Model):
 class CadastroCliente(Base):
     nome = models.CharField('Nome', max_length=20)
     sobrenome = models.CharField('Sobrenome', max_length=20)
-    cpf = models.DecimalField('CPF', max_digits=11, decimal_places=0)
+    cpf = models.CharField('CPF', max_length=11)
     email = models.EmailField('Email', max_length=100)
     cep = models.DecimalField('CEP', max_digits=8, decimal_places=0)
     logradouro = models.CharField('Logradouro', max_length=100)
     numero = models.IntegerField('Número da casa')
     bairro = models.CharField('Bairro', max_length=50)
     cidade = models.CharField('Cidade', max_length=30)
-    uf = models.CharField(max_length=1, choices=SIGLAS)
+    uf = models.CharField(max_length=2, choices=SIGLAS)
     telefone = models.DecimalField('Telefone', max_digits=11, decimal_places=0)
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome} {self.sobrenome}'
