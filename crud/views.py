@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import CadastroModelForm
 from .models import CadastroCliente
 from django.contrib import messages
@@ -7,7 +7,11 @@ from django.contrib import messages
 # Create your views here.
 
 def taskList(request):
-    return render(request, 'tasks/list.html')
+    tasks = CadastroCliente.objects.all()
+    context = {
+        'tasks': tasks
+    }    
+    return render(request, 'tasks/list.html', context)
 
 def cadastroClientes(request):
     if str(request.method) == 'POST':
@@ -27,9 +31,15 @@ def cadastroClientes(request):
     }
     return render(request, 'tasks/cadastro.html', context)
 
+def conteudo(request, id):
+    cliente = get_object_or_404(CadastroCliente, pk=id)
+    context = {
+        'cliente': cliente
+    }
+    return render(request, 'tasks/conteudo.html', context)
+
 def update(request, id):
     cliente = CadastroCliente.objects.get(id=id)
-    
     context = {
         'cliente': cliente
     }
