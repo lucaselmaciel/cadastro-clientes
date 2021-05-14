@@ -17,7 +17,7 @@
         {% for task in tasks %}
         <li class="task-item">
             <span><a href="/conteudo/{{task.id}}">{{task.nome}} {{task.sobrenome}}</a></span>
-            <span><a href="delete/{{task.id}}"></a><i class="fas fa-trash"></i></span>
+            <span><a href="delete/{{task.id}}"><i class="fas fa-trash"></i></a></span>
             <a href="update/{{task.id}}"><span><i class="fas fa-edit"></i></span></a>
         </li>
         {% endfor %}
