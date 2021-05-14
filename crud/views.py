@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .forms import CadastroModelForm
 from .models import CadastroCliente
 from django.contrib import messages
@@ -7,7 +7,7 @@ from django.contrib import messages
 # Create your views here.
 
 def taskList(request):
-    tasks = CadastroCliente.objects.all()
+    tasks = CadastroCliente.objects.all().order_by('-criacao')
     context = {
         'tasks': tasks
     }    
@@ -33,14 +33,28 @@ def cadastroClientes(request):
 
 def conteudo(request, id):
     cliente = get_object_or_404(CadastroCliente, pk=id)
+    status = 'Ativo' if cliente.ativo else 'Inativo'
     context = {
-        'cliente': cliente
+        'cliente': cliente,
+        'status': status
     }
     return render(request, 'tasks/conteudo.html', context)
 
 def update(request, id):
     cliente = CadastroCliente.objects.get(id=id)
+    form = CadastroModelForm(instance=cliente)
+    
+
     context = {
-        'cliente': cliente
+        'cliente': cliente,
+        'form': form,
     }
-    return render(request, 'tasks/update.html', context)
+    if str(request.method)=='POST':
+        form = CadastroModelForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+        else:
+            return render(request, 'tasks/update.html', context)
+    else:
+        return render(request, 'tasks/update.html', context)

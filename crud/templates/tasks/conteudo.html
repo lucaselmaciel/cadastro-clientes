@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block title %}Conteudo{% endblock %}
 
 {% block content %}
 <h1>{{cliente.nome}} {{cliente.sobrenome}}</h1>
-<p>{{cliente.telefone}}</p>
+<p>{{ status }}</p>
 <p>{{cliente.cidade}}</p>
 
 {% endblock %}
