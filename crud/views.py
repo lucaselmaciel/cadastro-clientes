@@ -65,4 +65,5 @@ def update(request, id):
 def delete(request, id):
     cliente = get_object_or_404(CadastroCliente, pk=id)
     cliente.delete()
+    redirect('/')
     return render(request, 'tasks/delete.html')
