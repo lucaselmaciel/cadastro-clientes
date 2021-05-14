@@ -9,13 +9,7 @@ from django.contrib import messages
 # Create your views here.
 
 def cliList(request):
-    cliente = CadastroCliente.objects.all().order_by('-criacao')
-
-    pag = Paginator(cliente, 5)
-    
-    page = request.GET.get('page')
-
-    clientes = pag.get_page(page)
+    clientes = CadastroCliente.objects.all().order_by('-criacao')
 
     context = {
         'tasks': clientes
