@@ -1,4 +1,6 @@
+from django.core import paginator
 from django.shortcuts import render, get_object_or_404,redirect
+from django.core.paginator import Paginator
 from .forms import CadastroModelForm
 from .models import CadastroCliente
 from django.contrib import messages
@@ -6,10 +8,17 @@ from django.contrib import messages
 
 # Create your views here.
 
-def taskList(request):
-    tasks = CadastroCliente.objects.all().order_by('-criacao')
+def cliList(request):
+    cliente = CadastroCliente.objects.all().order_by('-criacao')
+
+    pag = Paginator(cliente, 5)
+    
+    page = request.GET.get('page')
+
+    clientes = pag.get_page(page)
+
     context = {
-        'tasks': tasks
+        'tasks': clientes
     }    
     return render(request, 'tasks/list.html', context)
 
@@ -58,3 +67,8 @@ def update(request, id):
             return render(request, 'tasks/update.html', context)
     else:
         return render(request, 'tasks/update.html', context)
+
+def delete(request, id):
+    cliente = get_object_or_404(CadastroCliente, pk=id)
+    cliente.delete()
+    return render(request, 'tasks/delete.html')
